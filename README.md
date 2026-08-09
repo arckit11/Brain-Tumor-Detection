@@ -67,40 +67,6 @@ The model was trained on a dataset of **13,196 MRI Images** sourced from Hugging
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/NeuroScan-AI.git
-cd NeuroScan-AI
-```
-
-### 2. Install Dependencies
-Ensure you have Python 3.7+ installed. Install the required packages:
-```bash
-pip install -r requirements.txt
-pip install torch torchvision
-```
-
-### 3. Generate the Model (Important!)
-Due to GitHub's 100MB file size limits, the 122MB trained model (`bt_resnet50_model.pt`) is **not included** in this repository. 
-
-To run the web app, you must first train the model yourself (or download the dataset and run the training script). 
-```bash
-# This will download the dataset, train the model, and save it to models/bt_resnet50_model.pt
-python train_model.py
-```
-*(Training takes approximately 15-20 minutes on an NVIDIA RTX 4050 GPU).*
-
-### 4. Run the Web App
-Once the model is generated and saved in the `models/` directory, start the Flask server:
-```bash
-python app.py
-```
-The app will be live at `http://127.0.0.1:5000/`.
-
----
-
 ## 🛠️ Project Structure
 
 ```text
