@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan AI - Brain Tumor Detection</title>
+    <!-- Add FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link our new premium CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/premium.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fa-solid fa-brain"></i>
+            NeuroScan AI
+        </a>
+        <div class="nav-links">
+            <a href="/uimg" class="btn-glow" style="padding: 0.7rem 1.5rem; font-size: 1rem;">Launch Scanner</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="glass-panel hero-section animate-slide-up">
+                <h1 class="delay-1 animate-slide-up">Next-Generation MRI Analysis</h1>
+                <p class="delay-2 animate-slide-up">
+                    Harness the power of our state-of-the-art ResNet-50 Deep Learning model to analyze brain MRI scans instantly. 
+                    Our neural network is trained on thousands of clinical images to detect and classify Glioma, Meningioma, and Pituitary tumors with high precision.
+                </p>
+                <div class="actions delay-3 animate-slide-up">
+                    <a href="/uimg" class="btn-glow">
+                        <i class="fa-solid fa-upload" style="margin-right: 10px;"></i>
+                        Upload MRI Scan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

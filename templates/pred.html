@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - NeuroScan AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/premium.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fa-solid fa-brain"></i>
+            NeuroScan AI
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="glass-panel animate-slide-up">
+                <div class="result-grid">
+                    
+                    <!-- Left: Uploaded Image -->
+                    <div class="image-section delay-1 animate-slide-up">
+                        <img src="data:image/jpeg;base64,{{ img_b64 }}" alt="Uploaded MRI Scan" class="scan-preview">
+                    </div>
+                    
+                    <!-- Right: Analysis Results -->
+                    <div class="data-section delay-2 animate-slide-up">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Analysis Complete</h2>
+                        <p style="margin-bottom: 2rem;">Our deep learning model has finished analyzing the MRI scan.</p>
+                        
+                        <div style="margin-bottom: 1rem; font-size: 1.125rem; color: var(--text-muted);">
+                            Detected Classification:
+                        </div>
+                        
+                        <!-- Dynamic Badge based on result -->
+                        {% if result == 'None' %}
+                            <div class="status-badge status-none">
+                                <i class="fa-solid fa-check-circle" style="margin-right: 8px;"></i>
+                                No Tumor Detected
+                            </div>
+                            <p>The MRI scan shows no signs of Glioma, Meningioma, or Pituitary tumors.</p>
+                        {% else %}
+                            <div class="status-badge status-{{ result.lower() }}">
+                                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 8px;"></i>
+                                {{ result }} Tumor
+                            </div>
+                            <p>The neural network has identified patterns consistent with a {{ result }} tumor.</p>
+                        {% endif %}
+
+                        <!-- Confidence Bar -->
+                        <div class="confidence-container">
+                            <div class="confidence-header">
+                                <span>Model Confidence</span>
+                                <span style="color: var(--secondary); font-weight: 700;">{{ confidence }}%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <!-- Inline style for dynamic width -->
+                                <div class="progress-bar-fill" style="width: 0%;" data-target="{{ confidence }}"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="actions" style="justify-content: flex-start; margin-top: 3rem;">
+                            <a href="/uimg" class="btn-secondary">
+                                <i class="fa-solid fa-arrow-rotate-left" style="margin-right: 10px;"></i>
+                                Analyze Another Scan
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Animate progress bar on load
+        window.onload = function() {
+            setTimeout(() => {
+                const bar = document.querySelector('.progress-bar-fill');
+                const target = bar.getAttribute('data-target');
+                bar.style.width = target + '%';
+                
+                // Color grading based on confidence
+                if (target < 50) {
+                    bar.style.background = 'linear-gradient(90deg, #f59e0b, #ef4444)';
+                } else if (target < 80) {
+                    bar.style.background = 'linear-gradient(90deg, #0ea5e9, #38bdf8)';
+                } else {
+                    bar.style.background = 'linear-gradient(90deg, #10b981, #34d399)';
+                }
+            }, 500); // Wait for slide-up animation
+        }
+    </script>
+</body>
+</html>

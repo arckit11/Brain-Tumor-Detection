@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Scan - NeuroScan AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/premium.css') }}">
+    <style>
+        .submit-btn { margin-top: 2rem; width: 100%; display: none; }
+        .submit-btn.visible { display: block; }
+        .file-name { margin-top: 1rem; font-weight: 600; color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <i class="fa-solid fa-brain"></i>
+            NeuroScan AI
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container" style="max-width: 700px;">
+            <div class="glass-panel animate-slide-up">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Upload MRI Scan</h2>
+                
+                <form action="/uimg" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="upload-area" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <h3 id="uploadText">Drag & Drop or Click to Upload</h3>
+                        <p>Supports PNG, JPG, JPEG</p>
+                        <p class="file-name" id="fileName"></p>
+                        <input type="file" name="file" id="fileInput" accept=".png, .jpg, .jpeg" required onchange="handleFile(this)">
+                    </div>
+                    
+                    <button type="submit" class="btn-glow submit-btn" id="submitBtn">
+                        <i class="fa-solid fa-microscope" style="margin-right: 10px;"></i>
+                        Analyze Scan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileName');
+        const uploadText = document.getElementById('uploadText');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Highlight drop area
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.remove('dragover');
+            }, false);
+        });
+
+        // Handle dropped files
+        dropzone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files.length > 0) {
+                fileInput.files = files; // Set input value
+                handleFile(fileInput);
+            }
+        }
+
+        function handleFile(input) {
+            if(input.files && input.files[0]) {
+                const file = input.files[0];
+                fileNameDisplay.textContent = file.name;
+                uploadText.textContent = "Image Selected";
+                submitBtn.classList.add('visible');
+            }
+        }
+    </script>
+</body>
+</html>
