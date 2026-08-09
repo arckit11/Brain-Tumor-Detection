@@ -6,7 +6,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Flask](https://img.shields.io/badge/Flask-Web%20App-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![ResNet50](https://img.shields.io/badge/ResNet50-Transfer%20Learning-blueviolet?style=for-the-badge)](https://pytorch.org/vision/stable/models/resnet.html)
-[![License](https://img.shields.io/badge/License-MIT-1abc9c?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=for-the-badge)](#license)
 
 > A premium **end-to-end deep learning web application** that classifies brain tumors in MRI scans into four categories (Glioma, Meningioma, Pituitary, or No Tumor) using a **fine-tuned ResNet-50** architecture. Features a state-of-the-art glassmorphism UI and dynamic confidence scoring.
 
@@ -14,9 +14,31 @@
 
 ---
 
-## ⚠️ Medical Disclaimer
+## ⚠️ Important Disclaimers
 
-> **This tool is for educational and research purposes only.** It is not a substitute for professional medical diagnosis. Always consult a qualified radiologist or medical professional for clinical decisions.
+> **Portfolio Showcase Only:** This repository is intended strictly as a portfolio display piece. The code, models, and UI designs are **not open source** and are **not open for use, distribution, or reproduction**. All rights are reserved.
+
+> **Medical Disclaimer:** This tool is for educational and research purposes only. It is not a substitute for professional medical diagnosis. Always consult a qualified radiologist or medical professional for clinical decisions.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Deep Learning Framework:** PyTorch & Torchvision
+* **Model Architecture:** ResNet-50 (Fine-tuned via Transfer Learning)
+* **Backend:** Python & Flask
+* **Frontend:** HTML5, CSS3 (Custom Glassmorphism Design System)
+* **Data Handling:** Hugging Face Datasets API, Base64 Image Encoding
+
+---
+
+## 📈 Project Quantifications
+
+* **Dataset Size:** 13,196 MRI scans across 4 distinct classes.
+* **Training Time:** ~14 minutes (15 Epochs on NVIDIA RTX 4050 / 6GB VRAM).
+* **Model Accuracy:** 71% Validation Accuracy (using 224x224 downsampled inputs to fit memory constraints).
+* **Model Size:** 122 MB trained `.pt` weight file.
+* **Optimization:** Used PyTorch Automatic Mixed Precision (AMP/FP16) reducing VRAM consumption by ~40%.
 
 ---
 
@@ -95,6 +117,13 @@ The app will be live at `http://127.0.0.1:5000/`.
 ```
 
 ---
+
+## 🔒 License
+
+**All Rights Reserved.**
+
+This project is a personal portfolio piece. It is **not open source**. You may not use, copy, modify, merge, publish, distribute, sublicense, or sell copies of this software or its UI/UX designs.
+
 <div align="center">
 <i>Built with PyTorch and Flask.</i>
 </div>
